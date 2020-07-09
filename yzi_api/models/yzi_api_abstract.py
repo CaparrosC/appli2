@@ -6,7 +6,7 @@ from werkzeug.exceptions import BadRequest
 
 from odoo import models, api
 
-from odoo.addons.base_rest.components.service import to_int, to_bool, to_float
+from odoo.addons.base_rest.components.service import to_int, to_bool, to_float, to_datetime
 
 
 class YziApiAbstract(models.Model):
@@ -62,6 +62,9 @@ class YziApiAbstract(models.Model):
             elif field.ttype == 'integer':
                 type = 'integer'
                 coerce = to_int
+            elif field.ttype == 'datetime':
+                type = 'datetime'
+                coerce = to_datetime
             else:
                 type = field.ttype
 

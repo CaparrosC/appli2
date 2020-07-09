@@ -1,7 +1,7 @@
 # Copyright 2018 ACSONE SA/NV
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-
+import datetime
 import inspect
 import logging
 import textwrap
@@ -47,6 +47,15 @@ def to_float(val):
     if val:
         return float(val)
     return None
+
+
+def to_datetime(val):
+    if isinstance(val, datetime.datetime):
+        return val
+    if val:
+        return datetime.datetime.strptime(val, "%Y-%m-%d %H:%M:%S")
+    return None
+
 
 
 def skip_secure_params(func):
